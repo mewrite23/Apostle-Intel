@@ -21,8 +21,8 @@ NEWS_API_KEY = os.environ.get("NEWS_API_KEY", "")
 NETLIFY_SITE_ID = os.environ.get("NETLIFY_SITE_ID", "")
 NETLIFY_AUTH_TOKEN = os.environ.get("NETLIFY_AUTH_TOKEN", "")
 
-DATA_FILE = Path(__file__).parent.parent.parent / "data" / "companies.json"
-OUTPUT_FILE = Path(__file__).parent.parent.parent / "index.html"
+DATA_FILE = Path(__file__).parent.parent / "data" / "companies.json"
+OUTPUT_FILE = Path(__file__).parent.parent / "index.html"
 
 # Keywords that indicate a high-value signal for Apostle
 SIGNAL_KEYWORDS_HOT = [
