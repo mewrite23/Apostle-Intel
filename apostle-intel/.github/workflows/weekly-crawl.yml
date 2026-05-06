@@ -25,7 +25,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: python apostle-intel/scripts/crawl.py
 
-      - name: Commit updated data
+     - name: Commit updated data
         run: |
           git config --global user.name "Apostle Intel Bot"
           git config --global user.email "intel-bot@apostle.co"
