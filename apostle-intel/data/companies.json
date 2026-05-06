@@ -8,14 +8,47 @@
     "tier": 1,
     "priority": "high",
     "signal": "hot",
-    "trigger": "New CEO May 2025",
+    "trigger": "Stellar’s CMO says crypto must ditch hype and “get rich slow” to win mainstream",
     "why": "Brand consolidation play across 30+ sub-brands. New CEO inherited a messy multi-brand identity problem. Take 5 growing 16% YoY needs brand investment.",
     "contact": "CMO or VP Brand. New CEO brings new team.",
     "outreach": "Saw the leadership transition at Driven. We know what it looks like when a multi-brand portfolio needs to get its identity house in order — we've done it at Valvoline's scale.",
     "confidence": "high",
-    "search_terms": ["Driven Brands", "Driven Brands CMO", "Driven Brands rebrand", "Take 5 Oil Change marketing"],
+    "search_terms": [
+      "Driven Brands",
+      "Driven Brands CMO",
+      "Driven Brands rebrand",
+      "Take 5 Oil Change marketing"
+    ],
     "last_updated": "2026-05-06",
-    "recent_intel": []
+    "recent_intel": [
+      {
+        "title": "Stellar’s CMO says crypto must ditch hype and “get rich slow” to win mainstream trust",
+        "url": "https://www.coindesk.com/coindesk-news/2026/04/29/stellar-s-cmo-says-crypto-must-ditch-hype-and-get-rich-slow-to-win-mainstream-trust",
+        "source": "CoinDesk",
+        "published": "2026-04-29",
+        "description": "Stellar’s new marketing chief says crypto’s future hinges on long-term value creation, not hype cycles or technical jargon.",
+        "score": 2,
+        "hot_hits": 0
+      },
+      {
+        "title": "The Marketing CEO: Why Leadership Now Starts With Knowing Your Brand Identity",
+        "url": "https://www.adweek.com/brand-marketing/the-marketing-ceo-why-leadership-now-starts-with-knowing-your-brand-identity/",
+        "source": "Adweek",
+        "published": "2026-05-01",
+        "description": "Why today's chief executives must lead as marketers first.",
+        "score": 2,
+        "hot_hits": 0
+      },
+      {
+        "title": "Your Taco Bell drive-thru menu is starting to take cues from you",
+        "url": "https://www.businessinsider.com/taco-bell-brings-more-ai-drive-thrus-yum-brands-expansion-2026-4",
+        "source": "Business Insider",
+        "published": "2026-04-30",
+        "description": "Yum Brands plans to make more Taco Bell drive-thrus powered by AI, with a dynamic menu and other features.",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 2,
@@ -31,7 +64,12 @@
     "contact": "VP Marketing or CMO. Research current team.",
     "outreach": "Private label brand differentiation is a different game than retail marketing. Valvoline taught us how the distributor relationship actually works from the inside.",
     "confidence": "high",
-    "search_terms": ["AutoZone marketing", "AutoZone CMO", "AutoZone brand strategy", "AutoZone private label"],
+    "search_terms": [
+      "AutoZone marketing",
+      "AutoZone CMO",
+      "AutoZone brand strategy",
+      "AutoZone private label"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -49,9 +87,24 @@
     "contact": "NAPA brand team specifically, not parent GPC.",
     "outreach": "The NAPA brand has enormous equity that isn't being fully activated. That gap is visible from outside.",
     "confidence": "high",
-    "search_terms": ["NAPA Auto Parts marketing", "Genuine Parts Company CMO", "NAPA rebrand", "NAPA brand"],
+    "search_terms": [
+      "NAPA Auto Parts marketing",
+      "Genuine Parts Company CMO",
+      "NAPA rebrand",
+      "NAPA brand"
+    ],
     "last_updated": "2026-05-06",
-    "recent_intel": []
+    "recent_intel": [
+      {
+        "title": "SEO Is Filed Under Marketing — That’s The Whole Problem via @sejournal, @pedrodias",
+        "url": "https://theinference.io/p/filed-under-marketing-sitting-in",
+        "source": "Theinference.io",
+        "published": "2026-04-29",
+        "description": "Misalignment between SEO, product, and engineering has created a system where accountability exists without control, and predictable failures follow.\nThe post SEO Is Filed Under Marketing — That’s The Whole Problem appeared first on Search Engine Journal.",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 4,
@@ -67,7 +120,12 @@
     "contact": "CMO or VP Marketing.",
     "outreach": "When a parts brand starts expanding into new categories, the brand architecture either supports it or fights it. We've seen this problem before.",
     "confidence": "high",
-    "search_terms": ["Dorman Products marketing", "Dorman Products CMO", "Dorman brand", "Dorman new products"],
+    "search_terms": [
+      "Dorman Products marketing",
+      "Dorman Products CMO",
+      "Dorman brand",
+      "Dorman new products"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -80,14 +138,28 @@
     "tier": 1,
     "priority": "high",
     "signal": "hot",
-    "trigger": "Relocated HQ from NYC to Memphis 2024",
+    "trigger": "15 stocks including Infosys, Tech Mahindra, HCLTech, Reliance to remain in focus",
     "why": "Brand new Memphis HQ, ~$500M revenue, wants to be seen as part of the Memphis business community. Perfect timing.",
     "contact": "CEO Anan Bishara specifically.",
     "outreach": "You just made Memphis home. So did we — Birmingham to Memphis is a short conversation. We know how to build brand credibility in regional markets.",
     "confidence": "mod",
-    "search_terms": ["PGI automotive filters Memphis", "Premier Group International automotive", "Anan Bishara PGI"],
+    "search_terms": [
+      "PGI automotive filters Memphis",
+      "Premier Group International automotive",
+      "Anan Bishara PGI"
+    ],
     "last_updated": "2026-05-06",
-    "recent_intel": []
+    "recent_intel": [
+      {
+        "title": "15 stocks including Infosys, Tech Mahindra, HCLTech, Reliance to remain in focus on May 4",
+        "url": "https://www.thehindubusinessline.com/markets/15-stocks-including-infosys-tech-mahindra-hcltech-reliance-to-remain-in-focus-on-may-4/article70937071.ece",
+        "source": "BusinessLine",
+        "published": "2026-05-04",
+        "description": "India Inc. witnessed brisk dealmaking and expansion, with HCLTech’s AI push, Tech Mahindra’s overseas acquisition, Reliance Retail’s brand buyout, and multiple firms securing orders, appointments, and investments across telecom, energy, pharma, and hospitality",
+        "score": 6,
+        "hot_hits": 1
+      }
+    ]
   },
   {
     "id": 6,
@@ -103,7 +175,12 @@
     "contact": "CMO or incoming marketing leadership.",
     "outreach": "Restructuring moments are brand moments. Either the identity gets sharper or it gets louder — they need the former.",
     "confidence": "high",
-    "search_terms": ["Advance Auto Parts restructuring", "Advance Auto Parts CMO", "Advance Auto Parts brand", "Advance Auto marketing"],
+    "search_terms": [
+      "Advance Auto Parts restructuring",
+      "Advance Auto Parts CMO",
+      "Advance Auto Parts brand",
+      "Advance Auto marketing"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -121,7 +198,12 @@
     "contact": "VP Brand or Marketing Director.",
     "outreach": "The Cooper integration and EV pivot is a brand architecture challenge masquerading as a product challenge.",
     "confidence": "high",
-    "search_terms": ["Goodyear marketing", "Goodyear CMO", "Goodyear EV tires brand", "Cooper Tire integration Goodyear"],
+    "search_terms": [
+      "Goodyear marketing",
+      "Goodyear CMO",
+      "Goodyear EV tires brand",
+      "Cooper Tire integration Goodyear"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -139,7 +221,11 @@
     "contact": "North American marketing leadership.",
     "outreach": "Rebranding a 90-year-old company name is one of the hardest things in brand strategy. The new name is the easy part.",
     "confidence": "mod",
-    "search_terms": ["Niterra NGK rebrand", "Niterra marketing", "NGK Niterra brand strategy"],
+    "search_terms": [
+      "Niterra NGK rebrand",
+      "Niterra marketing",
+      "NGK Niterra brand strategy"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -157,7 +243,12 @@
     "contact": "CMO or Brand Director.",
     "outreach": "Heritage brands with new owners always face the same tension: modernize without losing the equity that made them worth buying.",
     "confidence": "mod",
-    "search_terms": ["Turtle Wax marketing", "Turtle Wax CMO", "Turtle Wax rebrand", "Turtle Wax new products"],
+    "search_terms": [
+      "Turtle Wax marketing",
+      "Turtle Wax CMO",
+      "Turtle Wax rebrand",
+      "Turtle Wax new products"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -175,7 +266,12 @@
     "contact": "CMO. Research current team.",
     "outreach": "Building a performance brand house out of 20 acquisitions requires more than a holding company structure.",
     "confidence": "mod",
-    "search_terms": ["Holley Performance marketing", "Holley Performance CMO", "Holley brand integration", "Holley Performance acquisitions"],
+    "search_terms": [
+      "Holley Performance marketing",
+      "Holley Performance CMO",
+      "Holley brand integration",
+      "Holley Performance acquisitions"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -193,7 +289,12 @@
     "contact": "CMO or VP Marketing.",
     "outreach": "Growing from 100 to 1,700 locations is a brand consistency problem at scale.",
     "confidence": "mod",
-    "search_terms": ["Caliber Collision marketing", "Caliber Collision CMO", "Caliber Collision brand", "Caliber Collision expansion"],
+    "search_terms": [
+      "Caliber Collision marketing",
+      "Caliber Collision CMO",
+      "Caliber Collision brand",
+      "Caliber Collision expansion"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -211,7 +312,12 @@
     "contact": "CMO.",
     "outreach": "Adding ADAS services to a glass brand requires more than a new service menu. It requires permission.",
     "confidence": "high",
-    "search_terms": ["Safelite marketing", "Safelite CMO", "Safelite ADAS brand", "Safelite repositioning"],
+    "search_terms": [
+      "Safelite marketing",
+      "Safelite CMO",
+      "Safelite ADAS brand",
+      "Safelite repositioning"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -229,7 +335,12 @@
     "contact": "VP Brand or Marketing, Americas division.",
     "outreach": "Nashville is home. So is understanding how a legacy tire brand earns relevance in a world increasingly skeptical of big automotive.",
     "confidence": "high",
-    "search_terms": ["Bridgestone Americas marketing", "Bridgestone Americas CMO", "Firestone brand", "Bridgestone sustainability brand"],
+    "search_terms": [
+      "Bridgestone Americas marketing",
+      "Bridgestone Americas CMO",
+      "Firestone brand",
+      "Bridgestone sustainability brand"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -247,7 +358,12 @@
     "contact": "Brand or Marketing Director.",
     "outreach": "Prestone has 95 years of equity in the garage. The question is whether that equity is being leveraged or just inherited.",
     "confidence": "mod",
-    "search_terms": ["Prestone marketing", "Prestone brand", "Energizer Auto marketing", "Prestone CMO"],
+    "search_terms": [
+      "Prestone marketing",
+      "Prestone brand",
+      "Energizer Auto marketing",
+      "Prestone CMO"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -265,7 +381,12 @@
     "contact": "VP Brand or CMO.",
     "outreach": "Battery brands face an identity crisis — the EV transition makes their legacy positioning feel like a liability. It doesn't have to.",
     "confidence": "mod",
-    "search_terms": ["Clarios marketing", "Clarios CMO", "Optima Batteries brand", "Clarios EV brand"],
+    "search_terms": [
+      "Clarios marketing",
+      "Clarios CMO",
+      "Optima Batteries brand",
+      "Clarios EV brand"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -283,7 +404,12 @@
     "contact": "Marketing Director or VP Marketing.",
     "outreach": "WIX just signed with NASCAR Racing Experience. We know how to make that kind of investment earn more than impressions — we've done it in the same category.",
     "confidence": "mod",
-    "search_terms": ["WIX Filters marketing", "WIX Filters NASCAR", "WIX Filters brand", "WIX Filters CMO"],
+    "search_terms": [
+      "WIX Filters marketing",
+      "WIX Filters NASCAR",
+      "WIX Filters brand",
+      "WIX Filters CMO"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -301,7 +427,12 @@
     "contact": "CEO or CMO if one exists yet.",
     "outreach": "When you're acquiring that fast, the brand either becomes the connective tissue or the liability.",
     "confidence": "mod",
-    "search_terms": ["Highline Warren marketing", "Highline Warren acquisition", "Highline Warren brand", "Highline Warren leadership"],
+    "search_terms": [
+      "Highline Warren marketing",
+      "Highline Warren acquisition",
+      "Highline Warren brand",
+      "Highline Warren leadership"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -319,7 +450,12 @@
     "contact": "CMO or VP Marketing.",
     "outreach": "You just launched a technician training brand. That's the beginning of an employer brand and a customer brand story happening simultaneously.",
     "confidence": "mod",
-    "search_terms": ["Crash Champions marketing", "Crash Champions CMO", "Crash Champions brand", "Crash Champions expansion"],
+    "search_terms": [
+      "Crash Champions marketing",
+      "Crash Champions CMO",
+      "Crash Champions brand",
+      "Crash Champions expansion"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -337,7 +473,12 @@
     "contact": "VP Marketing or Franchise Brand team.",
     "outreach": "Franchise brand consistency isn't a creative problem. It's a systems problem with creative implications.",
     "confidence": "mod",
-    "search_terms": ["Midas brand marketing", "TBC Corporation marketing", "Midas franchise brand", "NTB brand"],
+    "search_terms": [
+      "Midas brand marketing",
+      "TBC Corporation marketing",
+      "Midas franchise brand",
+      "NTB brand"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -355,7 +496,12 @@
     "contact": "CMO or VP Marketing.",
     "outreach": "Pep Boys has one of the most recognizable brand assets in automotive and one of the most underactivated identities.",
     "confidence": "mod",
-    "search_terms": ["Pep Boys marketing", "Pep Boys CMO", "Pep Boys brand", "Pep Boys strategy"],
+    "search_terms": [
+      "Pep Boys marketing",
+      "Pep Boys CMO",
+      "Pep Boys brand",
+      "Pep Boys strategy"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -373,9 +519,32 @@
     "contact": "Hold.",
     "outreach": "Hold.",
     "confidence": "high",
-    "search_terms": ["Snap-on CMO", "Snap-on marketing leadership", "Snap-on brand"],
+    "search_terms": [
+      "Snap-on CMO",
+      "Snap-on marketing leadership",
+      "Snap-on brand"
+    ],
     "last_updated": "2026-05-06",
-    "recent_intel": []
+    "recent_intel": [
+      {
+        "title": "Smart KPIs: Accountability Over Outcomes Over Activity.",
+        "url": "https://www.kaushik.net/avinash/smart-kpis-accountability-over-outcomes-over-activity/",
+        "source": "Kaushik.net",
+        "published": "2026-05-04",
+        "description": "A couple of years ago, I was doing a Strategic Consulting engagement for a global company that operates in 75 countries. The scope was to build out a Marketing strategy for the next generation of success. I was immensely grateful for this fun and deeply chall…",
+        "score": 1,
+        "hot_hits": 0
+      },
+      {
+        "title": "What’s Really Possible; The New Home Takeover",
+        "url": "http://www.adexchanger.com/daily-news-roundup/wednesday-29042026/",
+        "source": "AdExchanger",
+        "published": "2026-04-29",
+        "description": "POSSIBLE is over the AI hype; real estate is going tech; and Snap dips its toes into branded agents. \nThe post What’s Really Possible; The New Home Takeover appeared first on AdExchanger.",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 22,
@@ -391,7 +560,11 @@
     "contact": "Hold.",
     "outreach": "Hold.",
     "confidence": "high",
-    "search_terms": ["O'Reilly Auto Parts CMO", "O'Reilly marketing leadership", "O'Reilly brand"],
+    "search_terms": [
+      "O'Reilly Auto Parts CMO",
+      "O'Reilly marketing leadership",
+      "O'Reilly brand"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -409,7 +582,11 @@
     "contact": "Hold.",
     "outreach": "Hold.",
     "confidence": "mod",
-    "search_terms": ["Monro Muffler CMO", "Monro brand", "Monro marketing"],
+    "search_terms": [
+      "Monro Muffler CMO",
+      "Monro brand",
+      "Monro marketing"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -427,7 +604,11 @@
     "contact": "Hold.",
     "outreach": "Hold.",
     "confidence": "mod",
-    "search_terms": ["Stoneridge marketing", "Stoneridge CMO", "Stoneridge brand"],
+    "search_terms": [
+      "Stoneridge marketing",
+      "Stoneridge CMO",
+      "Stoneridge brand"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   },
@@ -445,7 +626,11 @@
     "contact": "Hold.",
     "outreach": "Hold.",
     "confidence": "high",
-    "search_terms": ["WD-40 CMO", "WD-40 marketing leadership", "WD-40 brand"],
+    "search_terms": [
+      "WD-40 CMO",
+      "WD-40 marketing leadership",
+      "WD-40 brand"
+    ],
     "last_updated": "2026-05-06",
     "recent_intel": []
   }
