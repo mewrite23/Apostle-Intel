@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
 Apostle Automotive Aftermarket Intelligence Crawler
-Runs weekly via GitHub Actions. Fetches news signals for each target company,
-scores relevance, updates company data, and rebuilds the HTML dashboard.
+Runs weekly via GitHub Actions.
+- Fetches news signals for each tracked company
+- Discovers NEW companies showing brand/marketing signals
+- Updates company data and rebuilds the HTML dashboard
+- Deploys to Netlify
 """
 
 import json
@@ -22,9 +25,10 @@ NETLIFY_SITE_ID = os.environ.get("NETLIFY_SITE_ID", "")
 NETLIFY_AUTH_TOKEN = os.environ.get("NETLIFY_AUTH_TOKEN", "")
 
 DATA_FILE = Path(__file__).resolve().parent.parent / "data" / "companies.json"
+DISCOVERY_FILE = Path(__file__).resolve().parent.parent / "data" / "discovered.json"
 OUTPUT_FILE = Path(__file__).resolve().parent.parent / "index.html"
 
-# Keywords that indicate a high-value signal for Apostle
+# Signal keywords for existing company monitoring
 SIGNAL_KEYWORDS_HOT = [
     "new cmo", "new chief marketing", "hired cmo", "appoints cmo",
     "rebrand", "rebranding", "brand refresh", "new brand",
@@ -39,63 +43,87 @@ SIGNAL_KEYWORDS_WARM = [
     "growth", "investment", "new market",
 ]
 
+# ── Discovery Queries ───────────────────────────────────────────────────────────
+
+DISCOVERY_QUERIES = [
+    "automotive aftermarket new CMO hired",
+    "auto parts company new chief marketing officer",
+    "aftermarket brand new marketing vice president",
+    "automotive aftermarket rebrand 2026",
+    "auto parts brand refresh campaign",
+    "aftermarket company new brand identity",
+    "private equity automotive aftermarket acquisition brand",
+    "aftermarket company acquired rebranding",
+    "automotive aftermarket agency review",
+    "auto parts marketing agency appointed",
+    "collision repair brand expansion marketing",
+    "automotive fluids brand campaign launch",
+    "performance auto parts brand strategy",
+]
+
+DISCOVERY_BLOCKLIST = [
+    "dealership", "dealer group", "car dealer", "used car",
+    "electric vehicle manufacturer", "tesla", "oem", "recall",
+    "insurance", "warranty", "finance", "loan",
+]
+
 # ── News Fetching ───────────────────────────────────────────────────────────────
 
-def fetch_news_for_company(company: dict) -> list[dict]:
-    """Fetch recent news articles for a company using NewsAPI."""
+def fetch_news(query: str, page_size: int = 5) -> list:
     if not NEWS_API_KEY:
-        print(f"  [skip] No NEWS_API_KEY set — using mock data for {company['name']}")
         return []
 
-    articles = []
     week_ago = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
 
-    for term in company["search_terms"][:2]:  # Limit to 2 terms to stay within API quota
-        try:
-            params = urllib.parse.urlencode({
-                "q": term,
-                "from": week_ago,
-                "sortBy": "relevancy",
-                "language": "en",
-                "pageSize": 5,
-                "apiKey": NEWS_API_KEY,
-            })
-            url = f"https://newsapi.org/v2/everything?{params}"
-            req = urllib.request.Request(url, headers={"User-Agent": "ApostleIntel/1.0"})
+    try:
+        params = urllib.parse.urlencode({
+            "q": query,
+            "from": week_ago,
+            "sortBy": "relevancy",
+            "language": "en",
+            "pageSize": page_size,
+            "apiKey": NEWS_API_KEY,
+        })
+        url = f"https://newsapi.org/v2/everything?{params}"
+        req = urllib.request.Request(url, headers={"User-Agent": "ApostleIntel/1.0"})
 
-            with urllib.request.urlopen(req, timeout=10) as response:
-                data = json.loads(response.read().decode())
-                if data.get("status") == "ok":
-                    for article in data.get("articles", []):
-                        articles.append({
-                            "title": article.get("title", ""),
-                            "url": article.get("url", ""),
-                            "source": article.get("source", {}).get("name", ""),
-                            "published": article.get("publishedAt", "")[:10],
-                            "description": article.get("description", "") or "",
-                        })
-            time.sleep(0.5)  # Polite delay between requests
+        with urllib.request.urlopen(req, timeout=10) as response:
+            data = json.loads(response.read().decode())
+            if data.get("status") == "ok":
+                return [
+                    {
+                        "title": a.get("title", ""),
+                        "url": a.get("url", ""),
+                        "source": a.get("source", {}).get("name", ""),
+                        "published": a.get("publishedAt", "")[:10],
+                        "description": a.get("description", "") or "",
+                    }
+                    for a in data.get("articles", [])
+                ]
+    except Exception as e:
+        print(f"  [warn] News fetch failed for '{query}': {e}")
 
-        except Exception as e:
-            print(f"  [warn] News fetch failed for '{term}': {e}")
+    return []
 
-    # Deduplicate by URL
+
+def fetch_news_for_company(company: dict) -> list:
+    articles = []
+    for term in company["search_terms"][:2]:
+        articles.extend(fetch_news(term))
+        time.sleep(0.5)
+
     seen = set()
     unique = []
     for a in articles:
         if a["url"] not in seen:
             seen.add(a["url"])
             unique.append(a)
-
     return unique
+
 
 # ── Signal Scoring ─────────────────────────────────────────────────────────────
 
-def score_articles(articles: list[dict]) -> tuple[str, str, list[dict]]:
-    """
-    Score articles against signal keywords.
-    Returns (signal_level, best_trigger, top_articles).
-    """
+def score_articles(articles: list) -> tuple:
     if not articles:
         return None, None, []
 
@@ -113,28 +141,93 @@ def score_articles(articles: list[dict]) -> tuple[str, str, list[dict]]:
 
     scored.sort(key=lambda x: x["score"], reverse=True)
     top = scored[:3]
-
-    # Determine signal level from best article
     best = scored[0]
-    if best["hot_hits"] >= 1:
-        signal = "hot"
-    elif best["score"] >= 2:
-        signal = "warm"
-    else:
-        signal = None
 
-    # Extract a trigger phrase from the best headline
-    trigger = best["title"][:80] if best["title"] else None
-    # Clean off source suffix patterns like " - Reuters"
-    trigger = re.sub(r'\s*[-|]\s*\w[\w\s]*$', '', trigger).strip()
+    signal = "hot" if best["hot_hits"] >= 1 else "warm" if best["score"] >= 2 else None
+    trigger = re.sub(r'\s*[-|]\s*\w[\w\s]*$', '', best["title"][:80]).strip() if best["title"] else None
 
     return signal, trigger, top
 
+
+# ── Discovery Engine ────────────────────────────────────────────────────────────
+
+def extract_company_name(title: str) -> str:
+    patterns = [
+        r'^([A-Z][A-Za-z\s&\-\.]+?)\s+(?:announces|appoints|launches|hires|acquires|names|unveils)',
+        r'^([A-Z][A-Za-z\s&\-\.]+?)\s+(?:has|have)\s+(?:appointed|hired|launched|acquired)',
+        r'([A-Z][A-Za-z\s&\-\.]{3,30}),?\s+(?:a leading|the leading|a major)',
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, title)
+        if match:
+            name = match.group(1).strip()
+            if len(name) > 3 and name not in ["The", "A", "An", "This", "New"]:
+                return name
+    return ""
+
+
+def is_blocklisted(text: str) -> bool:
+    text_lower = text.lower()
+    return any(term in text_lower for term in DISCOVERY_BLOCKLIST)
+
+
+def run_discovery(existing_companies: list) -> list:
+    print("\n── Discovery Pass ─────────────────────────────────────────")
+    existing_names = {c["name"].lower() for c in existing_companies}
+    candidates = {}
+
+    for query in DISCOVERY_QUERIES:
+        print(f"  Searching: {query}")
+        articles = fetch_news(query, page_size=5)
+        time.sleep(0.8)
+
+        for article in articles:
+            title = article.get("title", "")
+            description = article.get("description", "")
+            full_text = f"{title} {description}"
+
+            if is_blocklisted(full_text):
+                continue
+            if any(name in full_text.lower() for name in existing_names):
+                continue
+
+            company_name = extract_company_name(title)
+            if not company_name:
+                continue
+
+            text_lower = full_text.lower()
+            hot_hits = sum(1 for kw in SIGNAL_KEYWORDS_HOT if kw in text_lower)
+            warm_hits = sum(1 for kw in SIGNAL_KEYWORDS_WARM if kw in text_lower)
+            score = hot_hits * 3 + warm_hits
+
+            if score < 2:
+                continue
+
+            key = company_name.lower()
+            if key not in candidates:
+                candidates[key] = {
+                    "name": company_name,
+                    "articles": [],
+                    "score": 0,
+                    "hot_hits": 0,
+                    "first_seen": datetime.now().strftime("%Y-%m-%d"),
+                }
+            candidates[key]["articles"].append(article)
+            candidates[key]["score"] += score
+            candidates[key]["hot_hits"] += hot_hits
+
+    sorted_candidates = sorted(candidates.values(), key=lambda x: x["score"], reverse=True)
+    top = sorted_candidates[:10]
+    print(f"  Found {len(top)} discovery candidates")
+    return top
+
+
 # ── HTML Builder ────────────────────────────────────────────────────────────────
 
-def build_html(companies: list[dict]) -> str:
+def build_html(companies: list, discovered: list) -> str:
     updated_str = datetime.now().strftime("%B %d, %Y")
     companies_json = json.dumps(companies, ensure_ascii=False)
+    discovered_json = json.dumps(discovered, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -149,6 +242,7 @@ def build_html(companies: list[dict]) -> str:
     --text:#e8e6e0;--text-muted:#6b6960;--text-dim:#3a3933;
     --tier1:#c8ff00;--tier2:#ffa940;--tier3:#ff4d4d;
     --role-mfg:#4da6ff;--role-dist:#a78bfa;--role-inst:#34d399;--role-plat:#fb923c;
+    --discovery:#b57bee;
   }}
   *{{box-sizing:border-box;margin:0;padding:0}}
   body{{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;min-height:100vh}}
@@ -156,6 +250,13 @@ def build_html(companies: list[dict]) -> str:
   .brand{{font-family:'Syne',sans-serif;font-weight:800;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}}
   h1{{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--text);margin-top:6px;letter-spacing:-.02em}}
   .meta{{color:var(--text-muted);font-size:11px;text-align:right;line-height:1.8}}
+  .tab-bar{{padding:0 40px;border-bottom:1px solid var(--border);display:flex;gap:0}}
+  .tab{{padding:14px 24px 14px 0;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}}
+  .tab:hover{{color:var(--text)}}
+  .tab.active{{color:var(--accent);border-bottom-color:var(--accent)}}
+  .tab-count{{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1px 7px;font-size:10px;margin-left:6px}}
+  .tab.active .tab-count{{background:var(--accent);color:#000;border-color:var(--accent)}}
+  .panel{{display:none}}.panel.active{{display:block}}
   .controls{{padding:20px 40px;border-bottom:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;align-items:center}}
   .filter-group{{display:flex;gap:6px;align-items:center}}
   .filter-label{{color:var(--text-muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-right:4px}}
@@ -167,9 +268,8 @@ def build_html(companies: list[dict]) -> str:
   input[type=text]:focus{{border-color:var(--accent)}}
   input[type=text]::placeholder{{color:var(--text-dim)}}
   .sort-controls{{padding:10px 40px;border-bottom:1px solid var(--border);display:flex;gap:0}}
-  .sort-btn{{background:none;border:none;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:4px 16px 4px 0;transition:color .15s;display:flex;align-items:center;gap:5px}}
-  .sort-btn:hover{{color:var(--text)}}
-  .sort-btn.active{{color:var(--accent)}}
+  .sort-btn{{background:none;border:none;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:4px 16px 4px 0;transition:color .15s}}
+  .sort-btn:hover{{color:var(--text)}}.sort-btn.active{{color:var(--accent)}}
   .stat-bar{{padding:14px 40px;border-bottom:1px solid var(--border);display:flex;gap:32px}}
   .stat{{display:flex;flex-direction:column;gap:2px}}
   .stat-val{{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--accent)}}
@@ -177,8 +277,7 @@ def build_html(companies: list[dict]) -> str:
   .grid-header{{display:grid;grid-template-columns:2fr 1.2fr .8fr .7fr .7fr 1fr 1fr;gap:0;padding:10px 40px;border-bottom:1px solid var(--border);color:var(--text-muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase}}
   .company-list{{padding:0 40px 60px}}
   .company-row{{display:grid;grid-template-columns:2fr 1.2fr .8fr .7fr .7fr 1fr 1fr;gap:0;padding:14px 0;border-bottom:1px solid var(--border);align-items:center;cursor:pointer;transition:background .12s;margin:0 -40px;padding-left:40px;padding-right:40px}}
-  .company-row:hover{{background:rgba(255,255,255,.02)}}
-  .company-row.expanded{{background:rgba(200,255,0,.03)}}
+  .company-row:hover{{background:rgba(255,255,255,.02)}}.company-row.expanded{{background:rgba(200,255,0,.03)}}
   .company-name{{font-family:'Syne',sans-serif;font-weight:600;font-size:14px;color:var(--text)}}
   .company-sub{{font-size:10px;color:var(--text-muted);margin-top:2px}}
   .hq{{color:var(--text-muted);font-size:12px}}
@@ -190,10 +289,7 @@ def build_html(companies: list[dict]) -> str:
   .proximity-bar{{display:flex;align-items:center;gap:8px}}
   .prox-dots{{display:flex;gap:3px}}
   .dot{{width:7px;height:7px;border-radius:50%}}
-  .dot.on-t1{{background:var(--tier1)}}
-  .dot.on-t2{{background:var(--tier2)}}
-  .dot.on-t3{{background:var(--tier3)}}
-  .dot.off{{background:var(--border)}}
+  .dot.on-t1{{background:var(--tier1)}}.dot.on-t2{{background:var(--tier2)}}.dot.on-t3{{background:var(--tier3)}}.dot.off{{background:var(--border)}}
   .prox-label{{font-size:10px;color:var(--text-muted)}}
   .signal-indicator{{display:flex;align-items:center;gap:6px}}
   .signal-dot{{width:8px;height:8px;border-radius:50%}}
@@ -201,18 +297,14 @@ def build_html(companies: list[dict]) -> str:
   .signal-warm .signal-dot{{background:var(--tier2)}}
   .signal-cold .signal-dot{{background:var(--text-dim);border:1px solid #333}}
   .signal-text{{font-size:11px}}
-  .signal-hot .signal-text{{color:var(--tier1)}}
-  .signal-warm .signal-text{{color:var(--tier2)}}
-  .signal-cold .signal-text{{color:var(--text-muted)}}
+  .signal-hot .signal-text{{color:var(--tier1)}}.signal-warm .signal-text{{color:var(--tier2)}}.signal-cold .signal-text{{color:var(--text-muted)}}
   .priority-num{{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}}
-  .p-high{{color:var(--accent)}}
-  .p-med{{color:var(--tier2)}}
-  .p-low{{color:var(--text-muted)}}
+  .p-high{{color:var(--accent)}}.p-med{{color:var(--tier2)}}.p-low{{color:var(--text-muted)}}
   .expand-panel{{display:none;background:var(--surface);border:1px solid var(--border);padding:20px 24px;margin:0 -40px;margin-bottom:2px;padding-left:40px;padding-right:40px}}
   .expand-panel.open{{display:block}}
   .expand-grid{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}}
   .expand-section h4{{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}}
-  .expand-section p,.expand-section li{{font-size:12px;color:var(--text-muted);line-height:1.7}}
+  .expand-section p{{font-size:12px;color:var(--text-muted);line-height:1.7}}
   .intel-item{{margin-top:8px;padding:10px 12px;background:rgba(200,255,0,.03);border-left:2px solid var(--accent)}}
   .intel-title{{font-size:11px;color:var(--text);line-height:1.5}}
   .intel-meta{{font-size:10px;color:var(--text-muted);margin-top:3px}}
@@ -220,11 +312,23 @@ def build_html(companies: list[dict]) -> str:
   .intel-link:hover{{text-decoration:underline}}
   .new-badge{{display:inline-block;background:var(--accent);color:#000;font-size:9px;font-weight:500;padding:1px 6px;border-radius:2px;margin-left:6px;letter-spacing:.05em}}
   .confidence{{display:inline-block;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border:1px solid;border-radius:2px;margin-left:6px;vertical-align:middle}}
-  .conf-high{{color:var(--accent);border-color:var(--accent)}}
-  .conf-mod{{color:var(--tier2);border-color:var(--tier2)}}
-  .conf-low{{color:var(--text-muted);border-color:var(--text-dim)}}
-  .empty-state{{padding:60px 0;text-align:center;color:var(--text-muted)}}
+  .conf-high{{color:var(--accent);border-color:var(--accent)}}.conf-mod{{color:var(--tier2);border-color:var(--tier2)}}.conf-low{{color:var(--text-muted);border-color:var(--text-dim)}}
   .updated-note{{padding:8px 40px;background:rgba(200,255,0,.04);border-bottom:1px solid var(--border);font-size:10px;color:var(--text-muted);letter-spacing:.05em}}
+  .empty-state{{padding:60px 0;text-align:center;color:var(--text-muted)}}
+  .discovery-list{{padding:24px 40px 60px}}
+  .discovery-intro{{padding:0 0 20px;font-size:12px;color:var(--text-muted);line-height:1.8;border-bottom:1px solid var(--border);margin-bottom:0}}
+  .discovery-card{{padding:20px 0;border-bottom:1px solid var(--border)}}
+  .discovery-name{{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--discovery);margin-bottom:4px}}
+  .discovery-score{{font-size:10px;color:var(--text-muted);margin-bottom:12px;letter-spacing:.05em}}
+  .discovery-articles{{display:flex;flex-direction:column;gap:8px}}
+  .discovery-article{{padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--discovery)}}
+  .discovery-article-title{{font-size:12px;color:var(--text);line-height:1.5}}
+  .discovery-article-meta{{font-size:10px;color:var(--text-muted);margin-top:4px}}
+  .discovery-article-link{{color:var(--discovery);text-decoration:none;font-size:10px}}
+  .discovery-article-link:hover{{text-decoration:underline}}
+  .add-btn{{display:inline-block;margin-top:12px;padding:6px 16px;background:transparent;border:1px solid var(--discovery);color:var(--discovery);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;border-radius:2px;transition:all .15s;letter-spacing:.05em}}
+  .add-btn:hover{{background:var(--discovery);color:#000}}
+  .discovery-empty{{padding:60px 0;text-align:center;color:var(--text-muted)}}
 </style>
 </head>
 <body>
@@ -237,60 +341,87 @@ def build_html(companies: list[dict]) -> str:
   <div class="meta">Proximity-sorted · Signal-weighted<br>Auto-updated weekly</div>
 </header>
 
-<div class="updated-note">⟳ Last crawled: {updated_str} — signals sourced from NewsAPI across {len(companies)} companies</div>
+<div class="updated-note">⟳ Last crawled: {updated_str} · {len(companies)} tracked · {len(discovered)} new on radar</div>
 
-<div class="controls">
-  <div class="filter-group">
-    <span class="filter-label">Role</span>
-    <button class="pill active" onclick="filter('role','all',this)">All</button>
-    <button class="pill" onclick="filter('role','mfg',this)">Manufacturer</button>
-    <button class="pill" onclick="filter('role','dist',this)">Distributor</button>
-    <button class="pill" onclick="filter('role','inst',this)">Installer</button>
+<div class="tab-bar">
+  <div class="tab active" onclick="switchTab('targets',this)">
+    Target Universe <span class="tab-count">{len(companies)}</span>
   </div>
-  <div class="filter-group">
-    <span class="filter-label">Tier</span>
-    <button class="pill active" onclick="filter('tier','all',this)">All</button>
-    <button class="pill" onclick="filter('tier','1',this)">Tier 1 — No friction</button>
-    <button class="pill" onclick="filter('tier','2',this)">Tier 2 — Some friction</button>
-    <button class="pill" onclick="filter('tier','3',this)">Tier 3 — Hard</button>
-  </div>
-  <div class="filter-group">
-    <span class="filter-label">Signal</span>
-    <button class="pill active" onclick="filter('signal','all',this)">All</button>
-    <button class="pill" onclick="filter('signal','hot',this)">🟢 Hot</button>
-    <button class="pill" onclick="filter('signal','warm',this)">🟡 Warm</button>
-  </div>
-  <div class="search-wrap">
-    <input type="text" id="search" placeholder="Search companies..." oninput="renderList()">
+  <div class="tab" onclick="switchTab('discovery',this)">
+    New on Radar <span class="tab-count">{len(discovered)}</span>
   </div>
 </div>
 
-<div class="sort-controls">
-  <button class="sort-btn active" id="sort-prox" onclick="setSort('proximity')">Proximity ↓</button>
-  <button class="sort-btn" id="sort-pri" onclick="setSort('priority')">Priority ↓</button>
-  <button class="sort-btn" id="sort-sig" onclick="setSort('signal')">Signal ↓</button>
-  <button class="sort-btn" id="sort-name" onclick="setSort('name')">A–Z ↓</button>
+<div class="panel active" id="panel-targets">
+  <div class="controls">
+    <div class="filter-group">
+      <span class="filter-label">Role</span>
+      <button class="pill active" onclick="filter('role','all',this)">All</button>
+      <button class="pill" onclick="filter('role','mfg',this)">Manufacturer</button>
+      <button class="pill" onclick="filter('role','dist',this)">Distributor</button>
+      <button class="pill" onclick="filter('role','inst',this)">Installer</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Tier</span>
+      <button class="pill active" onclick="filter('tier','all',this)">All</button>
+      <button class="pill" onclick="filter('tier','1',this)">Tier 1</button>
+      <button class="pill" onclick="filter('tier','2',this)">Tier 2</button>
+      <button class="pill" onclick="filter('tier','3',this)">Tier 3</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Signal</span>
+      <button class="pill active" onclick="filter('signal','all',this)">All</button>
+      <button class="pill" onclick="filter('signal','hot',this)">🟢 Hot</button>
+      <button class="pill" onclick="filter('signal','warm',this)">🟡 Warm</button>
+    </div>
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Search companies..." oninput="renderList()">
+    </div>
+  </div>
+  <div class="sort-controls">
+    <button class="sort-btn active" id="sort-prox" onclick="setSort('proximity')">Proximity ↓</button>
+    <button class="sort-btn" id="sort-pri" onclick="setSort('priority')">Priority ↓</button>
+    <button class="sort-btn" id="sort-sig" onclick="setSort('signal')">Signal ↓</button>
+    <button class="sort-btn" id="sort-name" onclick="setSort('name')">A–Z ↓</button>
+  </div>
+  <div class="stat-bar">
+    <div class="stat"><div class="stat-val" id="stat-total">—</div><div class="stat-label">Companies</div></div>
+    <div class="stat"><div class="stat-val" id="stat-t1">—</div><div class="stat-label">Tier 1 HQ</div></div>
+    <div class="stat"><div class="stat-val" id="stat-hot">—</div><div class="stat-label">Hot Signals</div></div>
+    <div class="stat"><div class="stat-val" id="stat-intel">—</div><div class="stat-label">New Intel Items</div></div>
+  </div>
+  <div class="grid-header">
+    <div>Company</div><div>HQ</div><div>Role</div><div>Proximity</div>
+    <div>Priority</div><div>Signal</div><div>Trigger</div>
+  </div>
+  <div class="company-list" id="company-list"></div>
 </div>
 
-<div class="stat-bar">
-  <div class="stat"><div class="stat-val" id="stat-total">—</div><div class="stat-label">Companies</div></div>
-  <div class="stat"><div class="stat-val" id="stat-t1">—</div><div class="stat-label">Tier 1 HQ</div></div>
-  <div class="stat"><div class="stat-val" id="stat-hot">—</div><div class="stat-label">Hot Signals</div></div>
-  <div class="stat"><div class="stat-val" id="stat-intel">—</div><div class="stat-label">New Intel Items</div></div>
+<div class="panel" id="panel-discovery">
+  <div class="discovery-list">
+    <p class="discovery-intro">
+      Companies not in your target list that showed brand, marketing, or leadership signals this week.
+      Verify before adding — names are extracted automatically and may occasionally surface false positives.
+      To add a company, edit <code>data/companies.json</code> in GitHub.
+    </p>
+    <div id="discovery-container"></div>
+  </div>
 </div>
-
-<div class="grid-header">
-  <div>Company</div><div>HQ</div><div>Role</div><div>Proximity</div>
-  <div>Priority</div><div>Signal</div><div>Trigger</div>
-</div>
-
-<div class="company-list" id="company-list"></div>
 
 <script>
 const companies = {companies_json};
+const discovered = {discovered_json};
 let activeFilters = {{role:'all',tier:'all',signal:'all'}};
 let currentSort = 'proximity';
 let expandedId = null;
+
+function switchTab(name, el) {{
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('panel-'+name).classList.add('active');
+  if(name==='discovery') renderDiscovery();
+}}
 
 function proximityScore(t){{return t===1?3:t===2?2:1}}
 function signalScore(s){{return s==='hot'?3:s==='warm'?2:1}}
@@ -317,7 +448,7 @@ function getFiltered(){{
     if(activeFilters.role!=='all'&&c.role!==activeFilters.role)return false;
     if(activeFilters.tier!=='all'&&String(c.tier)!==activeFilters.tier)return false;
     if(activeFilters.signal!=='all'&&c.signal!==activeFilters.signal)return false;
-    if(q&&!c.name.toLowerCase().includes(q)&&!c.hq.toLowerCase().includes(q)&&!c.sub.toLowerCase().includes(q))return false;
+    if(q&&!c.name.toLowerCase().includes(q)&&!c.hq.toLowerCase().includes(q))return false;
     return true;
   }});
 }}
@@ -333,41 +464,37 @@ function getSorted(list){{
 
 function roleBadge(r){{
   const m={{mfg:['role-mfg','MFG'],dist:['role-dist','DIST'],inst:['role-inst','INST'],plat:['role-plat','PLAT']}};
-  const [cls,lbl]=m[r]||['','?'];
-  return `<span class="role-badge ${{cls}}">${{lbl}}</span>`;
+  const[cls,lbl]=m[r]||['','?'];
+  return`<span class="role-badge ${{cls}}">${{lbl}}</span>`;
 }}
 
 function proximityDots(tier){{
   const cls=tier===1?'on-t1':tier===2?'on-t2':'on-t3';
   const dots=[1,2,3].map(i=>`<div class="dot ${{i<=(4-tier)?cls:'off'}}"></div>`).join('');
-  const labels={{1:'No friction',2:'Some friction',3:'Hard'}};
-  return `<div class="proximity-bar"><div class="prox-dots">${{dots}}</div><span class="prox-label">${{labels[tier]}}</span></div>`;
+  return`<div class="proximity-bar"><div class="prox-dots">${{dots}}</div><span class="prox-label">${{{{1:'No friction',2:'Some friction',3:'Hard'}}[tier]}}</span></div>`;
 }}
 
-function signalEl(signal){{
-  const lbl={{hot:'Hot',warm:'Warm',cold:'Cold'}}[signal];
-  return `<div class="signal-indicator signal-${{signal}}"><div class="signal-dot"></div><span class="signal-text">${{lbl}}</span></div>`;
+function signalEl(s){{
+  const lbl={{hot:'Hot',warm:'Warm',cold:'Cold'}}[s];
+  return`<div class="signal-indicator signal-${{s}}"><div class="signal-dot"></div><span class="signal-text">${{lbl}}</span></div>`;
 }}
 
 function priorityEl(p){{
-  const cls={{high:'p-high',med:'p-med',low:'p-low'}}[p];
-  const sym={{high:'↑',med:'→',low:'↓'}}[p];
-  return `<span class="priority-num ${{cls}}">${{sym}}</span>`;
+  return`<span class="priority-num ${{{{high:'p-high',med:'p-med',low:'p-low'}}[p]}}">${{{{high:'↑',med:'→',low:'↓'}}[p]}}</span>`;
 }}
 
 function confBadge(c){{
   const cls=c==='high'?'conf-high':c==='mod'?'conf-mod':'conf-low';
-  return `<span class="confidence ${{cls}}">${{c}}</span>`;
+  return`<span class="confidence ${{cls}}">${{c}}</span>`;
 }}
 
 function intelItems(items){{
-  if(!items||!items.length)return '<p style="color:var(--text-dim);font-size:11px">No new intel this week.</p>';
+  if(!items||!items.length)return'<p style="color:var(--text-dim);font-size:11px">No new intel this week.</p>';
   return items.map(a=>`
     <div class="intel-item">
       <div class="intel-title">${{a.title}}</div>
       <div class="intel-meta">${{a.source}} · ${{a.published}} · <a class="intel-link" href="${{a.url}}" target="_blank">Read →</a></div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }}
 
 function toggleExpand(id){{
@@ -379,19 +506,16 @@ function renderList(){{
   const filtered=getFiltered();
   const sorted=getSorted(filtered);
   const totalIntel=filtered.reduce((sum,c)=>sum+(c.recent_intel||[]).length,0);
-
   document.getElementById('stat-total').textContent=filtered.length;
   document.getElementById('stat-t1').textContent=filtered.filter(c=>c.tier===1).length;
   document.getElementById('stat-hot').textContent=filtered.filter(c=>c.signal==='hot').length;
   document.getElementById('stat-intel').textContent=totalIntel;
-
   const container=document.getElementById('company-list');
   if(!sorted.length){{container.innerHTML='<div class="empty-state">No companies match current filters.</div>';return;}}
-
   container.innerHTML=sorted.map(c=>{{
     const isOpen=expandedId===c.id;
     const hasIntel=(c.recent_intel||[]).length>0;
-    return `
+    return`
       <div class="company-row ${{isOpen?'expanded':''}}" onclick="toggleExpand(${{c.id}})">
         <div>
           <div class="company-name">${{c.name}}${{hasIntel?'<span class="new-badge">NEW INTEL</span>':''}}</div>
@@ -412,8 +536,7 @@ function renderList(){{
           </div>
           <div class="expand-section">
             <h4>Who to contact</h4>
-            <p>${{c.contact}}</p>
-            <br>
+            <p>${{c.contact}}</p><br>
             <h4>Outreach angle</h4>
             <p style="color:var(--text);font-style:italic">"${{c.outreach}}"</p>
           </div>
@@ -422,8 +545,29 @@ function renderList(){{
             ${{intelItems(c.recent_intel)}}
           </div>
         </div>
-      </div>
-    `;
+      </div>`;
+  }}).join('');
+}}
+
+function renderDiscovery(){{
+  const container=document.getElementById('discovery-container');
+  if(!discovered.length){{container.innerHTML='<div class="discovery-empty">No new companies surfaced this week.</div>';return;}}
+  container.innerHTML=discovered.map(d=>{{
+    const articles=(d.articles||[]).slice(0,3);
+    const signal=d.hot_hits>0?'🔴 Strong signal':'🟡 Moderate signal';
+    return`
+      <div class="discovery-card">
+        <div class="discovery-name">${{d.name}}</div>
+        <div class="discovery-score">${{signal}} · Score: ${{d.score}} · First seen: ${{d.first_seen}}</div>
+        <div class="discovery-articles">
+          ${{articles.map(a=>`
+            <div class="discovery-article">
+              <div class="discovery-article-title">${{a.title}}</div>
+              <div class="discovery-article-meta">${{a.source}} · ${{a.published}} · <a class="discovery-article-link" href="${{a.url}}" target="_blank">Read →</a></div>
+            </div>`).join('')}}
+        </div>
+        <button class="add-btn" onclick="alert('To add ${{d.name}} to your tracked list, edit data/companies.json in GitHub.')">+ Add to Target List</button>
+      </div>`;
   }}).join('');
 }}
 
@@ -432,59 +576,40 @@ renderList();
 </body>
 </html>"""
 
+
 # ── Netlify Deploy ──────────────────────────────────────────────────────────────
 
 def deploy_to_netlify(html_content: str) -> bool:
-    """Deploy updated HTML to Netlify via API."""
     if not NETLIFY_SITE_ID or not NETLIFY_AUTH_TOKEN:
-        print("[skip] Netlify credentials not set — writing local file only.")
+        print("[skip] Netlify credentials not set.")
         return False
-
     try:
         import hashlib
         content_bytes = html_content.encode("utf-8")
         sha1 = hashlib.sha1(content_bytes).hexdigest()
-
-        # Step 1: Create a deploy
-        deploy_data = json.dumps({
-            "files": {"index.html": sha1}
-        }).encode("utf-8")
-
+        deploy_data = json.dumps({"files": {"index.html": sha1}}).encode("utf-8")
         req = urllib.request.Request(
             f"https://api.netlify.com/api/v1/sites/{NETLIFY_SITE_ID}/deploys",
             data=deploy_data,
-            headers={
-                "Authorization": f"Bearer {NETLIFY_AUTH_TOKEN}",
-                "Content-Type": "application/json",
-            },
+            headers={"Authorization": f"Bearer {NETLIFY_AUTH_TOKEN}", "Content-Type": "application/json"},
             method="POST"
         )
-
         with urllib.request.urlopen(req, timeout=30) as resp:
             deploy = json.loads(resp.read().decode())
             deploy_id = deploy["id"]
-            print(f"  Created deploy: {deploy_id}")
-
-        # Step 2: Upload the file
         upload_req = urllib.request.Request(
             f"https://api.netlify.com/api/v1/deploys/{deploy_id}/files/index.html",
             data=content_bytes,
-            headers={
-                "Authorization": f"Bearer {NETLIFY_AUTH_TOKEN}",
-                "Content-Type": "application/octet-stream",
-            },
+            headers={"Authorization": f"Bearer {NETLIFY_AUTH_TOKEN}", "Content-Type": "application/octet-stream"},
             method="PUT"
         )
-
         with urllib.request.urlopen(upload_req, timeout=30) as resp:
-            print(f"  Upload status: {resp.status}")
-
-        print(f"  Deployed successfully to Netlify.")
+            print(f"  Deployed. Status: {resp.status}")
         return True
-
     except Exception as e:
         print(f"  [error] Netlify deploy failed: {e}")
         return False
+
 
 # ── Main ────────────────────────────────────────────────────────────────────────
 
@@ -493,63 +618,61 @@ def main():
     print(f"Apostle Intel Crawler — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"{'='*60}\n")
 
-    # Load company data
     with open(DATA_FILE) as f:
         companies = json.load(f)
-
     print(f"Loaded {len(companies)} companies.\n")
 
-    # Process each company
-    for company in companies:
-        print(f"→ {company['name']} ({company['hq']})")
+    discovered = []
+    if DISCOVERY_FILE.exists():
+        with open(DISCOVERY_FILE) as f:
+            discovered = json.load(f)
 
+    # Monitor existing companies
+    print("── Monitoring Pass ────────────────────────────────────────")
+    for company in companies:
+        print(f"→ {company['name']}")
         articles = fetch_news_for_company(company)
         print(f"  Found {len(articles)} articles")
 
         if articles:
             new_signal, new_trigger, top_articles = score_articles(articles)
-
-            # Update signal only if we found something stronger
             if new_signal:
                 signal_rank = {"hot": 3, "warm": 2, "cold": 1}
-                current_rank = signal_rank.get(company["signal"], 1)
-                new_rank = signal_rank.get(new_signal, 1)
-
-                if new_rank >= current_rank:
-                    print(f"  Signal: {company['signal']} → {new_signal}")
+                if signal_rank.get(new_signal, 1) >= signal_rank.get(company["signal"], 1):
                     company["signal"] = new_signal
-
                 if new_trigger:
                     company["trigger"] = new_trigger
-                    print(f"  Trigger updated: {new_trigger[:60]}...")
-
             company["recent_intel"] = top_articles
             company["last_updated"] = datetime.now().strftime("%Y-%m-%d")
         else:
             company["recent_intel"] = []
-
         time.sleep(0.2)
 
-    # Save updated data
+    # Run discovery
+    if NEWS_API_KEY:
+        discovered = run_discovery(companies)
+    else:
+        print("\n[skip] No NEWS_API_KEY — skipping discovery.")
+
+    # Save
     with open(DATA_FILE, "w") as f:
         json.dump(companies, f, indent=2, ensure_ascii=False)
-    print(f"\nData saved to {DATA_FILE}")
+    with open(DISCOVERY_FILE, "w") as f:
+        json.dump(discovered, f, indent=2, ensure_ascii=False)
+    print(f"\nData saved.")
 
-    # Build HTML
-    html = build_html(companies)
-
-    # Write local copy
+    # Build and deploy
+    html = build_html(companies, discovered)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html)
-    print(f"HTML written to {OUTPUT_FILE}")
-
-    # Deploy
+    print(f"HTML built.")
     print("\nDeploying to Netlify...")
     deploy_to_netlify(html)
 
     print(f"\n{'='*60}")
-    print("Done.")
+    print(f"Done. {len(companies)} monitored. {len(discovered)} discovery candidates.")
     print(f"{'='*60}\n")
+
 
 if __name__ == "__main__":
     main()
