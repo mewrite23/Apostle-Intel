@@ -8,7 +8,7 @@
     "tier": 1,
     "priority": "high",
     "signal": "hot",
-    "trigger": "D+ Research: Brands expand creator marketing strategies",
+    "trigger": "A debate is brewing over the risks and rewards of serving ads to AI agents",
     "why": "Brand consolidation play across 30+ sub-brands. New CEO inherited a messy multi-brand identity problem. Take 5 growing 16% YoY needs brand investment.",
     "contact": "CMO or VP Brand. New CEO brings new team.",
     "outreach": "Saw the leadership transition at Driven. We know what it looks like when a multi-brand portfolio needs to get its identity house in order — we've done it at Valvoline's scale.",
@@ -19,34 +19,34 @@
       "Driven Brands rebrand",
       "Take 5 Oil Change marketing"
     ],
-    "last_updated": "2026-08-03",
+    "last_updated": "2026-08-10",
     "recent_intel": [
       {
-        "title": "D+ Research: Brands expand creator marketing strategies",
-        "url": "http://digiday.com/marketing/d-research-brands-expand-creator-marketing-strategies/",
-        "source": "Digiday",
-        "published": "2026-07-28",
-        "description": "Many are partnering with creators to help drive seasonal campaigns, support product launches and, in some cases, even help develop products",
-        "score": 4,
+        "title": "A debate is brewing over the risks and rewards of serving ads to AI agents",
+        "url": "https://www.businessinsider.com/ads-ai-agents-marketing-industry-debate-2026-8#article",
+        "source": "Business Insider",
+        "published": "2026-08-05",
+        "description": "Ads designed to influence AI agents rather than human consumers are emerging as a new marketing channel. Will the AI platforms play ball?",
+        "score": 2,
         "hot_hits": 0
       },
       {
-        "title": "Unisport Appoints Denise Karkos as Global Chief Marketing Officer",
-        "url": "https://www.prnewswire.com/news-releases/unisport-appoints-denise-karkos-as-global-chief-marketing-officer-302835465.html",
-        "source": "PRNewswire",
-        "published": "2026-07-27",
-        "description": "Experienced marketing leader to accelerate brand, community and commercial growth across North America and Globally TAUNTON, Mass., July 27, 2026 /PRNewswire/ -- Unisport today announced the appointment of Denise Karkos as Global Chief Marketing Officer. Base…",
-        "score": 3,
+        "title": "Express nods to its Y2K heyday in campaign that unites fashion, music",
+        "url": "https://www.marketingdive.com/news/express-nods-to-its-y2k-heyday-in-campaign-that-unites-fashion-music/826684/",
+        "source": "Marketing Dive",
+        "published": "2026-08-04",
+        "description": "Chief Marketing Officer Joe Berean discusses a fall effort featuring pop star Tinashe and NFL player Tee Higgins that iterates on the retailer’s “Dress to Express” platform.",
+        "score": 2,
         "hot_hits": 0
       },
       {
-        "title": "Submittable Announces Ben Chodor as New CEO",
-        "url": "https://www.globenewswire.com/news-release/2026/07/28/3334484/0/en/Submittable-Announces-Ben-Chodor-as-New-CEO.html",
-        "source": "GlobeNewswire",
-        "published": "2026-07-28",
-        "description": "Submittable, the leading giving and grants software, announced the appointment of Ben Chodor as Chief Executive Officer....",
-        "score": 3,
-        "hot_hits": 1
+        "title": "How an OpenAI influencer trip backfired",
+        "url": "https://www.theverge.com/tech/975173/openai-influencers-brand-trip-ai-backlash-marketing",
+        "source": "The Verge",
+        "published": "2026-08-04",
+        "description": "The brand trip is a right of passage for influencers. It's a mark of legitimacy that a sponsor wants to invite them on an all-expenses-paid vacation, often with luxurious freebies and activities. Trips can also spur hard feelings from uninvited influencers, t…",
+        "score": 1,
+        "hot_hits": 0
       }
     ]
   },
@@ -58,8 +58,8 @@
     "role": "dist",
     "tier": 1,
     "priority": "high",
-    "signal": "warm",
-    "trigger": "Syndigo Conversion Framework Helps Brands and Retailers Unlock Growth on Every S",
+    "signal": "hot",
+    "trigger": "QVC Group emerges from bankruptcy with new leadership and five billion dollar de",
     "why": "Memphis is a city where Birmingham plays well. Aggressively expanding private label and competing harder on brand against O'Reilly.",
     "contact": "VP Marketing or CMO. Research current team.",
     "outreach": "Private label brand differentiation is a different game than retail marketing. Valvoline taught us how the distributor relationship actually works from the inside.",
@@ -70,8 +70,18 @@
       "AutoZone brand strategy",
       "AutoZone private label"
     ],
-    "last_updated": "2026-06-29",
-    "recent_intel": []
+    "last_updated": "2026-08-10",
+    "recent_intel": [
+      {
+        "title": "QVC Group emerges from bankruptcy with new leadership and five billion dollar debt reduction",
+        "url": "https://fashionunited.uk/news/business/qvc-group-emerges-from-bankruptcy-with-new-leadership-and-five-billion-dollar-debt-reduction/2026080789680",
+        "source": "FashionUnited UK",
+        "published": "2026-08-07",
+        "description": "QVC Group exits bankruptcy after financial restructuring, reducing debt by $5 billion, with new leadership and board of directors.",
+        "score": 3,
+        "hot_hits": 1
+      }
+    ]
   },
   {
     "id": 3,
@@ -93,8 +103,18 @@
       "NAPA rebrand",
       "NAPA brand"
     ],
-    "last_updated": "2026-07-06",
-    "recent_intel": []
+    "last_updated": "2026-08-10",
+    "recent_intel": [
+      {
+        "title": " Rockville, MD Sales & Marketing – Multiple Roles from $30/hr to $90K+ - NewsBreak",
+        "url": "https://www.newsbreak.com/rockville-md-daily-brief-373344605/4818778692403-rockville-md-sales-marketing-multiple-roles-from-30-hr-to-90k",
+        "source": "Newsbreak.com",
+        "published": "2026-08-09",
+        "description": "Rockville’s sales scene is busy right now, with options from entry-level to seasoned pros. Here are several solid roles where you can grow your skills and",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 4,
@@ -116,7 +136,7 @@
       "Dorman brand",
       "Dorman new products"
     ],
-    "last_updated": "2026-06-29",
+    "last_updated": "2026-08-10",
     "recent_intel": []
   },
   {
@@ -138,8 +158,27 @@
       "Premier Group International automotive",
       "Anan Bishara PGI"
     ],
-    "last_updated": "2026-08-03",
-    "recent_intel": []
+    "last_updated": "2026-08-10",
+    "recent_intel": [
+      {
+        "title": "Q1 Results Today Highlights: SBI, Titan, Hindalco, Hitachi Energy, Oil India and PFC post profit growth; Ola Electric, BEML losses narrow; HGS slips into loss",
+        "url": "https://www.thehindubusinessline.com/markets/q1-results-today-highlights-sbi-titan-hindalco-power-finance-corporation-godrej-consumer-oil-india-nlc-kaynes-tech-ramco-cements-afcons-infra-lemon-tree-cello-hitachi-lic-trent-results-07-august-202/article71313123.ece",
+        "source": "BusinessLine",
+        "published": "2026-08-07",
+        "description": "Q1 Results Today, 07th August 2026 highlights: Find all the latest Q1 results 2026 updates of Aarti Pharmalabs, Advait Energy Transitions, Amba Enterprises, Afcons Infrastructure, AG Ventures, Akshar Spintex, Alankit, Anuh Pharma, APM Industries, Aqylon Nexus…",
+        "score": 1,
+        "hot_hits": 0
+      },
+      {
+        "title": "Sensex today | Stock Market Highlights: Sensex rises 152 points, Nifty ends above 24,620 after RBI keeps repo rate unchanged",
+        "url": "https://www.thehindubusinessline.com/markets/sensex-nifty50-today-stock-market-highlights-5th-august-2026/article71306480.ece",
+        "source": "BusinessLine",
+        "published": "2026-08-05",
+        "description": "Sensex Today, Nifty 50 | Stock Market Highlights, 5 August:  Indian benchmark indices ended higher after the RBI retained the repo rate and improved its FY27 growth outlook while lowering inflation projections. Gains in auto, realty and metal stocks offset co…",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 6,
@@ -184,14 +223,14 @@
       "Goodyear EV tires brand",
       "Cooper Tire integration Goodyear"
     ],
-    "last_updated": "2026-08-03",
+    "last_updated": "2026-08-10",
     "recent_intel": [
       {
-        "title": "PR Roundup: Iran War Tops Reputational Risk Index, Tony Romo’s OWI Crisis and Hot Jimothy Summer",
-        "url": "https://www.prnewsonline.com/pr-roundup-iran-war-tops-reputational-risk-index-tony-romos-owi-crisis-and-hot-jimothy-summer/",
-        "source": "Prnewsonline.com",
-        "published": "2026-07-30",
-        "description": "PR roundup covers the latest Reputation Risk Index focusing on the Iran war, what Tony Romo's OWI arrest crisis and CBS's silence can teach brands about crisis response, and what a little raccoon named Jimothy is teaching brands about the value of showing up …",
+        "title": "Sensex today | Stock Market Highlights: Sensex rises 152 points, Nifty ends above 24,620 after RBI keeps repo rate unchanged",
+        "url": "https://www.thehindubusinessline.com/markets/sensex-nifty50-today-stock-market-highlights-5th-august-2026/article71306480.ece",
+        "source": "BusinessLine",
+        "published": "2026-08-05",
+        "description": "Sensex Today, Nifty 50 | Stock Market Highlights, 5 August:  Indian benchmark indices ended higher after the RBI retained the repo rate and improved its FY27 growth outlook while lowering inflation projections. Gains in auto, realty and metal stocks offset co…",
         "score": 1,
         "hot_hits": 0
       }
@@ -262,8 +301,18 @@
       "Holley brand integration",
       "Holley Performance acquisitions"
     ],
-    "last_updated": "2026-06-29",
-    "recent_intel": []
+    "last_updated": "2026-08-10",
+    "recent_intel": [
+      {
+        "title": "Holley Q2 Earnings Call Highlights",
+        "url": "https://www.marketbeat.com/instant-alerts/holley-q2-earnings-call-highlights-2026-08-08/?utm_source=yahoofinance&amp;utm_medium=yahoofinance",
+        "source": "MarketBeat",
+        "published": "2026-08-08",
+        "description": "Holley (NYSE:HLLY) reported second-quarter 2026 net sales growth as three of its four operating divisions posted double-digit core sales gains, while the com...",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 11,
@@ -309,17 +358,7 @@
       "Safelite repositioning"
     ],
     "last_updated": "2026-08-03",
-    "recent_intel": [
-      {
-        "title": "Ohio State teams to add sponsorship patch on jerseys",
-        "url": "https://www.dispatch.com/story/sports/college/football/2026/07/28/ohio-state-has-new-jersey-patch-partner-for-sports-teams-chase/91073957007/",
-        "source": "Fci Academy",
-        "published": "2026-07-28",
-        "description": "The agreement, designates Chase as the official bank sponsor of Ohio State and the new jersey patch partner across Ohio State’s 36 programs.",
-        "score": 1,
-        "hot_hits": 0
-      }
-    ]
+    "recent_intel": []
   },
   {
     "id": 13,
@@ -364,7 +403,7 @@
       "Energizer Auto marketing",
       "Prestone CMO"
     ],
-    "last_updated": "2026-05-25",
+    "last_updated": "2026-08-10",
     "recent_intel": []
   },
   {
@@ -514,7 +553,7 @@
     "tier": 2,
     "priority": "low",
     "signal": "hot",
-    "trigger": "Disney Crafts Kraft Heinz Partnership for Parks & More",
+    "trigger": "Media Insider: TV showdown – the race to host political debates; Westpac pauses",
     "why": "Strong brand, strong internal team, not a natural agency buyer. Watch for leadership change.",
     "contact": "Hold.",
     "outreach": "Hold.",
@@ -524,8 +563,18 @@
       "Snap-on marketing leadership",
       "Snap-on brand"
     ],
-    "last_updated": "2026-08-03",
-    "recent_intel": []
+    "last_updated": "2026-08-10",
+    "recent_intel": [
+      {
+        "title": "Media Insider: TV showdown – the race to host political debates; Westpac pauses new brand campaign; Will Traitors NZ return?; Mike Hosking on ZB’s 100th birthday",
+        "url": "https://www.nzherald.co.nz/business/media-insider/media-insider-tv-showdown-the-race-to-host-political-debates-westpac-pauses-new-brand-campaign-will-traitors-nz-return-mike-hosking-on-zbs-100th-birthday/premium/C2VTNPQTANFU7APH425EBEMDW4/",
+        "source": "New Zealand Herald",
+        "published": "2026-08-06",
+        "description": "Will Traitors NZ return?; Hosking, Woodham, du Plessis-Allan reflect on 100 years of ZB.",
+        "score": 5,
+        "hot_hits": 1
+      }
+    ]
   },
   {
     "id": 22,
