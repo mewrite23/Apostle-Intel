@@ -8,7 +8,7 @@
     "tier": 1,
     "priority": "high",
     "signal": "hot",
-    "trigger": "Moburst reveals AI",
+    "trigger": "How Athleta is revamping its brand narrative with bolder purpose",
     "why": "Brand consolidation play across 30+ sub-brands. New CEO inherited a messy multi-brand identity problem. Take 5 growing 16% YoY needs brand investment.",
     "contact": "CMO or VP Brand. New CEO brings new team.",
     "outreach": "Saw the leadership transition at Driven. We know what it looks like when a multi-brand portfolio needs to get its identity house in order — we've done it at Valvoline's scale.",
@@ -19,33 +19,33 @@
       "Driven Brands rebrand",
       "Take 5 Oil Change marketing"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-08-31",
     "recent_intel": [
       {
-        "title": "The Former President of Kevin Hart’s Media Company Thinks Everyone Is Getting Gen Z Men Wrong",
-        "url": "https://www.entrepreneur.com/business-news/the-former-president-of-kevin-harts-media-company-thinks-everyone-is-getting-gen-z-men-wrong",
-        "source": "Entrepreneur",
-        "published": "2026-08-19",
-        "description": "Former Hartbeat president Bryan Smiley explains why brands are overlooking Gen Z men and how Hard Carry Media is building the next generation of creator-driven entertainment.",
-        "score": 1,
+        "title": "How Athleta is revamping its brand narrative with bolder purpose",
+        "url": "https://www.marketingdive.com/news/how-athleta-is-revamping-its-brand-narrative-with-bolder-purpose/828620/",
+        "source": "Marketing Dive",
+        "published": "2026-08-26",
+        "description": "CMO Erika Everett details a fall campaign that aims to be more provocative and visually distinct than the activewear retailer’s past marketing.",
+        "score": 3,
         "hot_hits": 0
       },
       {
-        "title": "The anatomy of a Morgan Stanley intern: Chipotle, a gym membership, and a flashy bag",
-        "url": "https://www.businessinsider.com/morgan-stanley-wall-street-intern-survey-gen-z-brands-2026-8#article",
-        "source": "Business Insider",
-        "published": "2026-08-22",
-        "description": "More than 500 Wall Street Gen Z interns revealed their go-to brands in a survey this summer.",
-        "score": 1,
+        "title": "Purpose Meets Performance: How Brands Win Without Compromise",
+        "url": "https://www.adweek.com/brand-marketing/purpose-meets-performance-how-brands-win-without-compromise/",
+        "source": "Adweek",
+        "published": "2026-08-25",
+        "description": "Turning values into growth with Texas A&M University and Joyride.",
+        "score": 2,
         "hot_hits": 0
       },
       {
-        "title": "Stop Counting Backlinks. Start Counting Brand Mentions.",
-        "url": "https://www.entrepreneur.com/business-news/stop-counting-backlinks-start-counting-brand-mentions",
-        "source": "Entrepreneur",
-        "published": "2026-08-20",
-        "description": "AI-driven search is making unlinked brand mentions increasingly valuable, so marketers should track both backlinks and credible brand mentions while continuing to build links.",
-        "score": 1,
+        "title": "Parks Associates: MDU Owners/Operators Value Trusted Brands With Reputation For Strong Cybersecurity and Data Privacy Protection When Selecting Proptech Vendors",
+        "url": "https://www.prnewswire.com/news-releases/parks-associates-mdu-ownersoperators-value-trusted-brands-with-reputation-for-strong-cybersecurity-and-data-privacy-protection-when-selecting-proptech-vendors-302860594.html",
+        "source": "PRNewswire",
+        "published": "2026-08-26",
+        "description": "Smart Spaces addresses key factors to forge successful partnerships and ROI in the multifamily market PLANO, Texas, Aug. 26, 2026 /PRNewswire/ -- Parks Associates will host the fourth annual Smart Spaces: Apartments, Hospitality, and Community Living Septembe…",
+        "score": 2,
         "hot_hits": 0
       }
     ]
@@ -93,8 +93,18 @@
       "NAPA rebrand",
       "NAPA brand"
     ],
-    "last_updated": "2026-08-10",
-    "recent_intel": []
+    "last_updated": "2026-08-31",
+    "recent_intel": [
+      {
+        "title": "Show HN: AdRiseLab – I built an AI media buyer for my own Meta ads",
+        "url": "https://adriselab.com/blog/what-is-an-ai-performance-marketer",
+        "source": "Adriselab.com",
+        "published": "2026-08-28",
+        "description": "An AI performance marketer is software that automates the repeatable parts of paid advertising — ad research, creative generation, testing, fatigue monitoring, and optimization recommendations — while a human keeps ownership of strategy, budgets, and final de…",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 4,
@@ -138,18 +148,8 @@
       "Premier Group International automotive",
       "Anan Bishara PGI"
     ],
-    "last_updated": "2026-08-24",
-    "recent_intel": [
-      {
-        "title": "A NEW ICON'S ARRIVAL: GENESIS UNVEILS GV90 FLAGSHIP SUV",
-        "url": "https://www.prnewswire.com/news-releases/a-new-icons-arrival-genesis-unveils-gv90-flagship-suv-302855654.html",
-        "source": "PRNewswire",
-        "published": "2026-08-20",
-        "description": "Genesis' first full-size flagship SUV represents culmination of brand's capabilities GV90 Neolun introduces the world's first independently opening and closing hidden B-pillar coach door, Neolun Arch Gate, for spacious entry and exit, embodying Genesis' philo…",
-        "score": 1,
-        "hot_hits": 0
-      }
-    ]
+    "last_updated": "2026-08-31",
+    "recent_intel": []
   },
   {
     "id": 6,
@@ -171,7 +171,7 @@
       "Advance Auto Parts brand",
       "Advance Auto marketing"
     ],
-    "last_updated": "2026-08-17",
+    "last_updated": "2026-08-31",
     "recent_intel": []
   },
   {
@@ -183,7 +183,7 @@
     "tier": 2,
     "priority": "med",
     "signal": "hot",
-    "trigger": "PIRTEK USA Maintains Strong Growth Momentum Through Midyear",
+    "trigger": "Goodyear burning rubber and cash as turnaround plan continues",
     "why": "Legacy brand actively modernizing for EV market. Cooper acquisition still being integrated. Heritage brand under pressure narrative.",
     "contact": "VP Brand or Marketing Director.",
     "outreach": "The Cooper integration and EV pivot is a brand architecture challenge masquerading as a product challenge.",
@@ -194,8 +194,18 @@
       "Goodyear EV tires brand",
       "Cooper Tire integration Goodyear"
     ],
-    "last_updated": "2026-08-17",
-    "recent_intel": []
+    "last_updated": "2026-08-31",
+    "recent_intel": [
+      {
+        "title": "Goodyear burning rubber and cash as turnaround plan continues",
+        "url": "https://www.cnbc.com/2026/08/29/goodyear-turnaround-cash-debt.html",
+        "source": "CNBC",
+        "published": "2026-08-29",
+        "description": "The tire maker has an ongoing turnaround plan as the company tries to restructure its business, refinance and pay down years of debt.",
+        "score": 3,
+        "hot_hits": 1
+      }
+    ]
   },
   {
     "id": 8,
@@ -285,7 +295,7 @@
       "Caliber Collision brand",
       "Caliber Collision expansion"
     ],
-    "last_updated": "2026-06-29",
+    "last_updated": "2026-08-31",
     "recent_intel": []
   },
   {
@@ -469,8 +479,18 @@
       "Midas franchise brand",
       "NTB brand"
     ],
-    "last_updated": "2026-07-20",
-    "recent_intel": []
+    "last_updated": "2026-08-31",
+    "recent_intel": [
+      {
+        "title": "Andreessen Horowitz is investing billions into a bleak future",
+        "url": "https://www.modelrepublic.org/articles/a16z-portfolio",
+        "source": "Modelrepublic.org",
+        "published": "2026-08-24",
+        "description": "The firm’s investment portfolio is full of companies that have exploited legal loopholes, created disturbing products, and broken the law.",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 20,
@@ -492,8 +512,18 @@
       "Pep Boys brand",
       "Pep Boys strategy"
     ],
-    "last_updated": "2026-07-27",
-    "recent_intel": []
+    "last_updated": "2026-08-31",
+    "recent_intel": [
+      {
+        "title": "When Inflation Is Sticky, 5 Dividend Aristocrats Are the Stocks to Own Now and Forever",
+        "url": "https://247wallst.com/investing/2026/08/27/when-inflation-is-sticky-5-dividend-aristocrats-are-the-stocks-to-own-now-and-forever/",
+        "source": "24/7 Wall St.",
+        "published": "2026-08-27",
+        "description": "Sticky inflation is quietly rewarding a specific group of stocks with decades of uninterrupted dividend growth, and Wall Street's top analysts say five of th...",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 21,
@@ -514,18 +544,8 @@
       "Snap-on marketing leadership",
       "Snap-on brand"
     ],
-    "last_updated": "2026-08-24",
-    "recent_intel": [
-      {
-        "title": "Thinking Outside The Chumbox; Divine Inspiration",
-        "url": "http://www.adexchanger.com/daily-news-roundup/thursday-20082026/",
-        "source": "AdExchanger",
-        "published": "2026-08-20",
-        "description": "Outta The Box Back in the long, long ago – as in, 2017 – Apple News made a tentative step into programmatic territory via an ad sales partnership with NBCUniversal. The arrangement brought programmatic plumbing – ad servers and measurement from vendors like C…",
-        "score": 1,
-        "hot_hits": 0
-      }
-    ]
+    "last_updated": "2026-08-31",
+    "recent_intel": []
   },
   {
     "id": 22,
@@ -590,7 +610,7 @@
       "Stoneridge CMO",
       "Stoneridge brand"
     ],
-    "last_updated": "2026-06-08",
+    "last_updated": "2026-08-31",
     "recent_intel": []
   },
   {
