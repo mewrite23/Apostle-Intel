@@ -8,7 +8,7 @@
     "tier": 1,
     "priority": "high",
     "signal": "hot",
-    "trigger": "Meme Marketing: How Internet Culture Became a Brand Strategy",
+    "trigger": "Oscar Health Is Rebranding to Make Health Insurance Feel Human",
     "why": "Brand consolidation play across 30+ sub-brands. New CEO inherited a messy multi-brand identity problem. Take 5 growing 16% YoY needs brand investment.",
     "contact": "CMO or VP Brand. New CEO brings new team.",
     "outreach": "Saw the leadership transition at Driven. We know what it looks like when a multi-brand portfolio needs to get its identity house in order — we've done it at Valvoline's scale.",
@@ -19,34 +19,34 @@
       "Driven Brands rebrand",
       "Take 5 Oil Change marketing"
     ],
-    "last_updated": "2026-09-14",
+    "last_updated": "2026-09-21",
     "recent_intel": [
       {
-        "title": "Meme Marketing: How Internet Culture Became a Brand Strategy",
-        "url": "https://www.markhub24.com/post/meme-marketing-how-internet-culture-became-a-brand-strategy",
-        "source": "Markhub24.com",
-        "published": "2026-09-07",
-        "description": "Discover how 'Meme Marketing: How Internet Culture Became a Brand Strategy' reshapes brand communication. Explore 'Meme Marketing: How Internet Culture Became a Brand Strategy' for insights.",
-        "score": 5,
+        "title": "Oscar Health Is Rebranding to Make Health Insurance Feel Human",
+        "url": "https://www.adweek.com/brand-marketing/oscar-health-is-rebranding-to-make-health-insurance-feel-human/",
+        "source": "Adweek",
+        "published": "2026-09-17",
+        "description": "The health insurance company launched a new marketplace brand, called Lucie, and recently refreshed the Oscar brand to appeal to its individual buyer audience.",
+        "score": 9,
+        "hot_hits": 2
+      },
+      {
+        "title": "Tropical Smoothie Cafe unveils rebrand, new logo",
+        "url": "https://www.restaurantdive.com/news/tropical-smoothie-cafe-launches-rebrand-new-logo/830640/",
+        "source": "Restaurantdive.com",
+        "published": "2026-09-17",
+        "description": "The chain’s updated look will also include a redesigned web and app that will offer more seamless browsing, customizations and access to loyalty rewards.",
+        "score": 4,
         "hot_hits": 1
       },
       {
-        "title": "Transforming Marketing: The Shift from Campaigns to Intellectual Property Ownership, ETBrandEquity",
-        "url": "https://brandequity.economictimes.indiatimes.com/news/media/the-campaign-is-dead-long-live-the-brand-ip-/133992611",
-        "source": "The Times of India",
-        "published": "2026-09-10",
-        "description": "Brands are shifting focus from campaigns to owning intellectual property and cultural memory.  YouTube and Balaji Telefilms partnership signals a new era of content distribution.  Agencies must evolve towards co-ownership and rights management for future succ…",
-        "score": 4,
-        "hot_hits": 0
-      },
-      {
-        "title": "Salesforce has held talks to buy Listen Labs, an AI customer research platform, for $2 billion",
-        "url": "https://www.businessinsider.com/salesforce-acquire-ai-startup-listen-labs-2026-9#article",
-        "source": "Business Insider",
-        "published": "2026-09-09",
-        "description": "Salesforce has had talks to acquire Listen Labs, an AI startup that provides marketing research to brands, for around $2 billion.",
-        "score": 2,
-        "hot_hits": 0
+        "title": "Under New CEO, Dave & Buster’s Wants to Win the Experience Game",
+        "url": "https://www.fsrmagazine.com/feature/under-new-ceo-dave-busters-wants-to-win-the-experience-game/",
+        "source": "Fsrmagazine.com",
+        "published": "2026-09-16",
+        "description": "Dave & Buster’s has long occupied a unique lane. It’s an occasion-based business, but one with lofty awareness for its relative size (184 units but 90 percen...",
+        "score": 3,
+        "hot_hits": 1
       }
     ]
   },
@@ -93,7 +93,7 @@
       "NAPA rebrand",
       "NAPA brand"
     ],
-    "last_updated": "2026-08-31",
+    "last_updated": "2026-09-21",
     "recent_intel": []
   },
   {
@@ -116,7 +116,7 @@
       "Dorman brand",
       "Dorman new products"
     ],
-    "last_updated": "2026-08-24",
+    "last_updated": "2026-09-21",
     "recent_intel": []
   },
   {
@@ -138,8 +138,27 @@
       "Premier Group International automotive",
       "Anan Bishara PGI"
     ],
-    "last_updated": "2026-09-14",
-    "recent_intel": []
+    "last_updated": "2026-09-21",
+    "recent_intel": [
+      {
+        "title": "TN CM’s UK visit attracts over ₹12,300 crore investments, 9,400 jobs",
+        "url": "https://www.thehindubusinessline.com/news/national/tn-cms-uk-visit-attracts-over-12300-crore-investments-9400-jobs/article71466503.ece",
+        "source": "BusinessLine",
+        "published": "2026-09-15",
+        "description": "Major companies have committed funds across manufacturing, technology, digital services and electrical equipment, with several projects planned across Tamil Nadu.",
+        "score": 1,
+        "hot_hits": 0
+      },
+      {
+        "title": "CEO Coaching International Celebrates 22 Clients and Partners for Ranking on the Prestigious 2026 Inc. 5000 List",
+        "url": "https://www.prnewswire.com/news-releases/ceo-coaching-international-celebrates-22-clients-and-partners-for-ranking-on-the-prestigious-2026-inc-5000-list-302877998.html",
+        "source": "PRNewswire",
+        "published": "2026-09-14",
+        "description": "MIAMI, Sept. 14, 2026 /PRNewswire/ -- CEO Coaching International, the leading CEO coaching firm for growth-focused CEOs and entrepreneurs globally, is proud to congratulate 19 of its clients and 3 of its Strategic Partners for earning a coveted spot on the 20…",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 6,
@@ -184,18 +203,8 @@
       "Goodyear EV tires brand",
       "Cooper Tire integration Goodyear"
     ],
-    "last_updated": "2026-09-14",
-    "recent_intel": [
-      {
-        "title": "SPIRIT AND GOODYEAR LAUNCH THE FIRST-EVER INFLATABLE BLIMP COSTUME INTO THE HALLOWEEN STRATOSPHERE",
-        "url": "https://www.prnewswire.com/news-releases/spirit-and-goodyear-launch-the-first-ever-inflatable-blimp-costume-into-the-halloween-stratosphere-302873817.html",
-        "source": "PRNewswire",
-        "published": "2026-09-09",
-        "description": "America's leading Halloween retailer drops an exclusive collab inspired by the world's most iconic aircraft. EGG HARBOR TOWNSHIP, N.J., Sept. 9, 2026 /PRNewswire/ -- Spirit Halloween and The Goodyear Tire & Rubber Company are joining forces to bring one of th…",
-        "score": 1,
-        "hot_hits": 0
-      }
-    ]
+    "last_updated": "2026-09-21",
+    "recent_intel": []
   },
   {
     "id": 8,
@@ -446,7 +455,7 @@
       "Crash Champions brand",
       "Crash Champions expansion"
     ],
-    "last_updated": "2026-09-07",
+    "last_updated": "2026-09-21",
     "recent_intel": []
   },
   {
@@ -514,27 +523,8 @@
       "Snap-on marketing leadership",
       "Snap-on brand"
     ],
-    "last_updated": "2026-09-14",
-    "recent_intel": [
-      {
-        "title": "The big Gen Z market taking over how India spends, saves and strategises",
-        "url": "https://economictimes.indiatimes.com/news/india/genz-spending-patterns-investing-jewellery-skincare-genz-savings-how-genz-spends-bmw-luxury-cars-genz-economy-shopping-habits-of-genz/articleshow/133873402.cms",
-        "source": "The Times of India",
-        "published": "2026-09-08",
-        "description": "India's youngest generation now leads consumption spending with unique preferences.  Gen Z's influence is reshaping brand strategies and investment patterns significantly.  This demographic is embracing early credit access and design-led purchases.  Their spe…",
-        "score": 2,
-        "hot_hits": 0
-      },
-      {
-        "title": "The Ad Spend Outlook Is Looking Up; Google Brings AI To MMM",
-        "url": "http://www.adexchanger.com/daily-news-roundup/friday-11092026/",
-        "source": "AdExchanger",
-        "published": "2026-09-11",
-        "description": "Ad-ding Up The Earth will keep turning on its axis, The Simpsons will keep putting out new episodes and advertisers will keep on spending. These are all immutable truths. On Thursday, the IAB released an update to its yearly outlook, forecasting 12.3% growth …",
-        "score": 1,
-        "hot_hits": 0
-      }
-    ]
+    "last_updated": "2026-09-21",
+    "recent_intel": []
   },
   {
     "id": 22,
