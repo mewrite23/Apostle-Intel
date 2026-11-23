@@ -8,7 +8,7 @@
     "tier": 1,
     "priority": "high",
     "signal": "hot",
-    "trigger": "Tano wants to make creator marketing as easy as buying Meta ads. See the pitch d",
+    "trigger": "Brands booking creators to make their ads are pushing up $116B global influencer",
     "why": "Brand consolidation play across 30+ sub-brands. New CEO inherited a messy multi-brand identity problem. Take 5 growing 16% YoY needs brand investment.",
     "contact": "CMO or VP Brand. New CEO brings new team.",
     "outreach": "Saw the leadership transition at Driven. We know what it looks like when a multi-brand portfolio needs to get its identity house in order — we've done it at Valvoline's scale.",
@@ -19,24 +19,33 @@
       "Driven Brands rebrand",
       "Take 5 Oil Change marketing"
     ],
-    "last_updated": "2026-11-16",
+    "last_updated": "2026-11-23",
     "recent_intel": [
       {
-        "title": "Tano wants to make creator marketing as easy as buying Meta ads. See the pitch deck that helped it raise $4 million.",
-        "url": "https://www.businessinsider.com/tano-raises-millions-to-help-brands-automate-creator-marketing-2026-11#article",
-        "source": "Business Insider",
-        "published": "2026-11-11",
-        "description": "Tano, whose customers have included Unilever and Lovable, uses AI agents to vet creators, negotiate deals, and evaluate campaigns.",
+        "title": "Brands booking creators to make their ads are pushing up $116B global influencer market",
+        "url": "https://digiday.com/media-buying/brands-booking-creators-to-make-their-ads-are-pushing-up-116b-global-influencer-market/",
+        "source": "Digiday",
+        "published": "2026-11-18",
+        "description": "Madison and Wall estimates creator marketing growing at double the pace of the rest of advertising, driven on by creator-led production investments.",
+        "score": 4,
+        "hot_hits": 0
+      },
+      {
+        "title": "What it will take for CMOs to reach the next frontier of AI-driven growth",
+        "url": "http://digiday.com/sponsored/what-it-will-take-for-cmos-to-reach-the-next-frontier-of-ai-driven-growth/",
+        "source": "Digiday",
+        "published": "2026-11-16",
+        "description": "Diego Lomanto, CMO, Writer  CMOs at the largest enterprise brands across consumer goods, financial services, B2B and more are all struggling with the same thing: more AI technology has not translated into more business growth. They’re stuck chasing efficiency…",
         "score": 2,
         "hot_hits": 0
       },
       {
-        "title": "TwitchCon is at a crossroads as creators question its value",
-        "url": "http://digiday.com/media/twitchcon-is-at-a-crossroads-as-creators-question-its-value/",
-        "source": "Digiday",
-        "published": "2026-11-12",
-        "description": "Ahead of TwitchCon 2026, brands and creators weigh in on if the platform's big IRL event is worth the cost and potential safety issues.",
-        "score": 1,
+        "title": "Playing for More: How Purpose and Authenticity Build Stronger Brands",
+        "url": "https://www.adweek.com/brand-marketing/playing-for-more-how-purpose-and-authenticity-build-stronger-brands/",
+        "source": "Adweek",
+        "published": "2026-11-19",
+        "description": "Going from one-off endorsements to partnerships with lasting impact.",
+        "score": 2,
         "hot_hits": 0
       }
     ]
@@ -84,8 +93,18 @@
       "NAPA rebrand",
       "NAPA brand"
     ],
-    "last_updated": "2026-11-16",
-    "recent_intel": []
+    "last_updated": "2026-11-23",
+    "recent_intel": [
+      {
+        "title": "Samsung's mobile repair vans have fixed over 50,000 Galaxy devices in Europe",
+        "url": "https://www.gsmarena.com/samsungs_mobile_repair_vans_have_fixed_over_50000_galaxy_devices_in_europe-news-75550.php",
+        "source": "GSMArena.com",
+        "published": "2026-11-20",
+        "description": "Samsung has announced that its mobile repair service has completed over 50,000 phone and tablet repairs across 12 European countries. The service launched in July of last year.\n\nIf you haven't heard of it before, the idea is pretty simple. Instead of you taki…",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 4,
@@ -243,8 +262,18 @@
       "Holley brand integration",
       "Holley Performance acquisitions"
     ],
-    "last_updated": "2026-10-26",
-    "recent_intel": []
+    "last_updated": "2026-11-23",
+    "recent_intel": [
+      {
+        "title": "For Sale: A 1968 Shelby Mustang GT500KR “King of the Road”",
+        "url": "https://silodrome.com/1968-shelby-mustang-gt500kr-king-of-the-road/",
+        "source": "Silodrome.com",
+        "published": "2026-11-19",
+        "description": "This is a 1968 Shelby Mustang GT500KR, the KR in the name stands for “King of the Road,” it was a clever marketing line referencing the Cobra Jet V8 under the hood, turning out...\nThe post For Sale: A 1968 Shelby Mustang GT500KR “King of the Road” appeared fi…",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 11,
@@ -495,18 +524,8 @@
       "Snap-on marketing leadership",
       "Snap-on brand"
     ],
-    "last_updated": "2026-11-16",
-    "recent_intel": [
-      {
-        "title": "Future of TV Briefing: Inside creator Grace Wells’s 100-hour branded video production process",
-        "url": "http://digiday.com/future-of-tv/future-of-tv-briefing-inside-creator-grace-wellss-100-hour-branded-video-production-process/",
-        "source": "Digiday",
-        "published": "2026-11-11",
-        "description": "This week’s Future of TV Briefing looks at creator Grace Wells’s full production process, from initial brief to final delivery.",
-        "score": 1,
-        "hot_hits": 0
-      }
-    ]
+    "last_updated": "2026-11-23",
+    "recent_intel": []
   },
   {
     "id": 22,
@@ -527,8 +546,18 @@
       "O'Reilly marketing leadership",
       "O'Reilly brand"
     ],
-    "last_updated": "2026-11-02",
-    "recent_intel": []
+    "last_updated": "2026-11-23",
+    "recent_intel": [
+      {
+        "title": "NASCAR and IndyCar Are Eyeing More Doubleheaders After Breakout Success at Phoenix",
+        "url": "https://www.motorbiscuit.com/nascar-indycar-future-doubleheaders/",
+        "source": "Motorbiscuit.com",
+        "published": "2026-11-20",
+        "description": "NASCAR and IndyCar's growing partnership could bring more crossover race weekends to American motorsports fans.",
+        "score": 1,
+        "hot_hits": 0
+      }
+    ]
   },
   {
     "id": 23,
